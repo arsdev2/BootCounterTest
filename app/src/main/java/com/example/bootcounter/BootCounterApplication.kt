@@ -48,7 +48,6 @@ class BootCounterApplication : Application() {
         val intentAlarm = Intent(this, NotificationReceiver::class.java)
         println("calling Alarm receiver ")
         val alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val startTime = (15 * 60 * 1000).toLong()
         var flag = PendingIntent.FLAG_UPDATE_CURRENT
         if(Build.VERSION.SDK_INT > 31) {
             flag = flag or PendingIntent.FLAG_IMMUTABLE
@@ -60,8 +59,7 @@ class BootCounterApplication : Application() {
             flag
         )
         alarmManager.setInexactRepeating(
-            AlarmManager.RTC, SystemClock.elapsedRealtime() +
-                    startTime, (60 * 1000).toLong(), pi
+            AlarmManager.RTC, SystemClock.elapsedRealtime(), (15 * 60 * 1000).toLong(), pi
         )
     }
 }
