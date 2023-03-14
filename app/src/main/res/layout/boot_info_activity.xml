@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.example.bootcounter.presentation.boot.viewmodel.BootInfoActivityViewModel" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/no_boots_title"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.bootInfoData.empty ? View.VISIBLE : View.GONE}"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/boot_info_list"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.bootInfoData.empty ? View.GONE : View.VISIBLE}"
+            app:dataList="@{viewModel.bootInfoData}"
+            />
+
+    </FrameLayout>
+
+</layout>
